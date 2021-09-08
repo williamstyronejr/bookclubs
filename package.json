@@ -4,13 +4,14 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "",
-    "dev": "concurrently \"npm run dev --prefix server\" \"npm run start --prefix client\"",
     "prepare": "husky install",
+    "start": "npm run production --prefix server",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run start --prefix client\"",
     "bootstrap": "lerna bootstrap",
     "build": "lerna run --concurrency 1 --stream build",
     "precommit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents",
-    "prepush": "lerna run --concurrency 1 --stream test --since HEAD --exclude-dependents"
+    "prepush": "lerna run --concurrency 1 --stream test --since HEAD --exclude-dependents",
+    "heroku-postbuild": "npm run bootstrap && npm run build"
   },
   "repository": {
     "type": "git",
